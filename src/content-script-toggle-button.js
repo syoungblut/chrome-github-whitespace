@@ -1,7 +1,7 @@
-(function( doc, location ) {
+(function(global, doc, location ) {
  
   
-  var addWhitespaceToggleButton = function(groupSelector, uri, title) {
+  var addWhitespaceToggleButton = function(groupSelector, uri, title, displayingWhitespace) {
     
     var group = doc.querySelector(groupSelector);
     
@@ -19,6 +19,13 @@
     a.setAttribute('aria-label', title);
     a.setAttribute('title', title);
     a.textContent = ' \u2423';
+    a.addEventListener("click", function() {
+      if (displayingWhitespace) {
+        GitHubWitespaceCookie.disable();
+      } else {
+        GitHubWitespaceCookie.enable();
+      }
+    });
     
     var li = document.createElement( 'li' );
     
@@ -52,11 +59,10 @@
     text = "Ignore Whitespace";
   }
   
-  
-  var button = addWhitespaceToggleButton("ul.pagehead-actions", uri, text);
+  var button = addWhitespaceToggleButton("ul.pagehead-actions", uri, text, displayWhitespace);
   if (displayWhitespace) {
     button.style.backgroundImage = "linear-gradient(rgb(150, 150, 150), rgb(238, 238, 238))";
   }
 
 
-})( document, location );
+})(window, document, location);

@@ -13,52 +13,38 @@
   
   "web_accessible_resources": ["resources/icon-16.png"],
   
-  //~ "background": { "scripts": ["com.b2a.core.js", "background.js"] },
-  
-  //~ "permissions": [
-    //~ "*://*/*",
-    //~ "tabs"
-  //~ ],
-  
-  //~ "page_action": {
-    //~ "name": "Make The Video the only thing on the page",
-    //~ "icons": ["resources/expand-video-48.png"],
-    //~ "default_icon": "resources/expand-video-48.png",
-    //~ "default_title": "Video Maximizer" 
-  //~ },
-  
   "content_scripts" : [
     {
       "matches" : [
-        // Github children
-        //~ "https://*.github.com/*/commit/*",
-        //~ "https://*.github.com/*/compare/*",
-        //~ "https://*.github.com/*/pull/*",
-        
-        // github.com
-        //~ "https://github.com/*/commit/*",
-        //~ "https://github.com/*/compare/*",
-        //~ "https://github.com/*/pull/*",
         
         // Any maybe github page
         "https://*/*/commit/*",
         "https://*/*/compare/*",
         "https://*/*/pull/*"
-        //~ 
-        //~ "http://github.*/*/commit/*",
-        //~ "https://github.*/*/commit/*",
-        //~ 
-        //~ "http://github.*/*/compare/*",
-        //~ "https://github.*/*/compare/*",
-        //~ 
-        //~ "http://github.*/*/pull/*",
-        //~ "https://github.*/*/pull/*",
       ],
       "js" : [
         "jsuri/jsuri-1.1.1.js",
-        "content-script.js"
+        "cookies/cookies-1.1.0.js",
+        "content-script-cookie-api.js",
+        "content-script-toggle-button.js"
       ],
       "run_at" : "document_idle",
+      "all_frames" : false
+    },
+    {
+      "matches" : [
+        // Any maybe github page
+        "https://*/*/commit/*",
+        "https://*/*/compare/*",
+        "https://*/*/pull/*"
+      ],
+      "js" : [
+        "jsuri/jsuri-1.1.1.js",
+        "cookies/cookies-1.1.0.js",
+        "content-script-cookie-api.js",
+        "content-script-preference-loader.js"
+      ],
+      "run_at" : "document_end",
       "all_frames" : false
     }
   ]
