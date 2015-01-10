@@ -1,0 +1,65 @@
+{
+  "name": "Github Whitespace ignorable differ",
+  "description": "This extension allows you to only see only the non-whitespace diffs.",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "incognito": "split",
+  
+  "icons": {
+    "16": "resources/icon-16.png",
+    "48": "resources/icon-48.png",
+    "128": "resources/icon-128.png"
+  },
+  
+  "web_accessible_resources": ["resources/icon-16.png"],
+  
+  //~ "background": { "scripts": ["com.b2a.core.js", "background.js"] },
+  
+  //~ "permissions": [
+    //~ "*://*/*",
+    //~ "tabs"
+  //~ ],
+  
+  //~ "page_action": {
+    //~ "name": "Make The Video the only thing on the page",
+    //~ "icons": ["resources/expand-video-48.png"],
+    //~ "default_icon": "resources/expand-video-48.png",
+    //~ "default_title": "Video Maximizer" 
+  //~ },
+  
+  "content_scripts" : [
+    {
+      "matches" : [
+        // Github children
+        //~ "https://*.github.com/*/commit/*",
+        //~ "https://*.github.com/*/compare/*",
+        //~ "https://*.github.com/*/pull/*",
+        
+        // github.com
+        //~ "https://github.com/*/commit/*",
+        //~ "https://github.com/*/compare/*",
+        //~ "https://github.com/*/pull/*",
+        
+        // Any maybe github page
+        "https://*/*/commit/*",
+        "https://*/*/compare/*",
+        "https://*/*/pull/*"
+        //~ 
+        //~ "http://github.*/*/commit/*",
+        //~ "https://github.*/*/commit/*",
+        //~ 
+        //~ "http://github.*/*/compare/*",
+        //~ "https://github.*/*/compare/*",
+        //~ 
+        //~ "http://github.*/*/pull/*",
+        //~ "https://github.*/*/pull/*",
+      ],
+      "js" : [
+        "jsuri/jsuri-1.1.1.js",
+        "content-script.js"
+      ],
+      "run_at" : "document_idle",
+      "all_frames" : false
+    }
+  ]
+}
