@@ -1,7 +1,7 @@
 {
   "name": "Github Whitespace ignorable differ",
   "description": "This extension allows you to only see only the non-whitespace diffs.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "manifest_version": 2,
   "incognito": "split",
   
@@ -11,13 +11,12 @@
     "128": "resources/icon-128.png"
   },
   
-  "web_accessible_resources": ["resources/icon-16.png"],
+  "web_accessible_resources": ["page-script-link-rewriter.js","resources/icon-16.png"],
   
   "content_scripts" : [
     {
       "matches" : [
         
-        // Any maybe github page
         "https://*/*/commit/*",
         "https://*/*/compare/*",
         "https://*/*/pull/*"
@@ -33,7 +32,6 @@
     },
     {
       "matches" : [
-        // Any maybe github page
         "https://*/*/commit/*",
         "https://*/*/compare/*",
         "https://*/*/pull/*"
